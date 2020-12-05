@@ -13,10 +13,6 @@ import cors from "cors";
 
 // morgan is a middle ware which will details all http requests in the console
 
-// multer is used to upload photos from the user
-import multer from "multer";
-export const upload = multer({ dest: "uploads/" });
-
 //cors allows http requests from other domains.
 
 app.use(cors());
@@ -39,13 +35,20 @@ app.use(express.urlencoded({ extended: false }));
 
 // below runs the request through each use line of code, adjust as need be
 
-import shopRouter from "./routes/shop.js";
-import usersRouter from "./routes/users.js";
-app.use("/users", usersRouter);
-app.use("/shop", shopRouter);
+import ingredientsRouter from "./routes/ingredients.js";
+app.use("/ingredients", ingredientsRouter);
+import customerRouter from "./routes/customer.js";
+app.use("/customer", customerRouter);
+import ordersRouter from "./routes/orders.js";
+app.use("/orders", ordersRouter);
 
 app.get("/", (req, res) => {
   res.json("welcome to the e-commerce api");
+});
+
+app.use((req, res, next) => {
+  res.json("Could not find this route.", 404);
+  throw error;
 });
 
 app.use(express.static(path.join(__dirname, "uploads")));

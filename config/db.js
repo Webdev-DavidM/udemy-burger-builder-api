@@ -6,7 +6,10 @@ let uri = process.env.mongoURI;
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(uri, { useNewUrlParser: true });
+    await mongoose.connect(
+      "mongodb+srv://footballblubber:technics@cluster0.y3gvs.mongodb.net/Burger-builder?retryWrites=true&w=majority",
+      { useNewUrlParser: true }
+    );
     const db = await mongoose.connection;
     db.on("error", console.error.bind(console, "connection error:"));
     db.once("open", function () {
