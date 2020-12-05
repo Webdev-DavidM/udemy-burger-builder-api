@@ -10,7 +10,7 @@ import Order from "../models/Orders.js";
 
 app.get("/", async (req, res) => {
   try {
-    const token = req.body.token;
+    const token = req.query.token;
     if (!token) {
       throw new Error("Authentication failed!");
     }
@@ -21,15 +21,14 @@ app.get("/", async (req, res) => {
   }
 
   try {
-    let orders = await Order.find({ userId: req.body.userId });
-    console.log(orders);
+    let orders = await Order.find({ userId: req.query.userId });
     if (orders) {
       res.status(200).json(orders).end();
     } else {
       res.status(401).json("no previous orders found").end();
     }
   } catch (err) {
-    res.json(err);
+    res.json(err).end();
   }
 });
 
@@ -37,8 +36,6 @@ app.get("/", async (req, res) => {
 
 app.post("/", async (req, res) => {
   let { order, userId, orderData, token, price } = req.body;
-
-  console.log(userId);
   try {
     const token1 = token;
     if (!token1) {
