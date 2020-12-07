@@ -1,3 +1,5 @@
-I have created this boiler plate for the back end of a MERN stack application. Node, Express and MongoDB are set up the values need adjusted as required.
+This is the backend of my burger builder app which I have hosted on Heroku. The backend was my first time using Javascript Web Tokens (JWT) for authentication which was a great experience.
 
-Download and then npm install to load the dependencies
+The app has a whole can be viewed via the front end at the link below
+
+https://webdev-davidm.github.io/Udemy-react-burger-app-with-redux/
